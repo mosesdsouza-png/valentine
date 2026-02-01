@@ -17,13 +17,19 @@
       overflow: hidden;
     }
 
+    /* Top image */
+    #topImage {
+      width: 200px;      /* adjust as needed */
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
     h1 {
       font-size: 2.8rem;
       margin-bottom: 40px;
       text-align: center;
     }
 
-    /* Container for buttons side by side */
     .buttons {
       display: flex;
       gap: 40px;
@@ -35,7 +41,6 @@
       cursor: pointer;
     }
 
-    /* YES button */
     #yes {
       padding: 20px 45px;
       font-size: 22px;
@@ -44,7 +49,6 @@
       color: white;
     }
 
-    /* NO button */
     #no {
       width: 70px;
       height: 35px;
@@ -52,23 +56,36 @@
       background-color: #999;
       color: white;
       border-radius: 10px;
-      /* Initially static inside the flex container */
-      position: relative;
+      position: relative; /* starts static, moves on hover/touch */
+    }
+
+    #note {
+      margin-top: 25px;
+      font-size: 16px;
+      color: #444;
     }
   </style>
 </head>
 <body>
 
-  <h1>Will you be my Valentine Kamakshu?❤️😉🦦 </h1>
+  <!-- Top image -->
+  <img id="topImage" src="km.JPG" alt="Cute image">
 
+  <!-- Question -->
+  <h1>Will you be my Valentine kamakshu? 🦦😉❤️ </h1>
+
+  <!-- Buttons -->
   <div class="buttons">
     <button id="yes" onclick="goYes()">YES</button>
     <button id="no">no</button>
   </div>
 
+  <!-- Note below buttons -->
+  <div id="note">No seems a bit shy 😏</div>
+
   <script>
     const noButton = document.getElementById("no");
-    let isMoving = false; // flag to start moving only after first hover/touch
+    let isMoving = false; // starts moving only after first hover/touch
 
     // Start moving on hover or touch
     noButton.addEventListener("mouseenter", startMoving);
@@ -77,15 +94,13 @@
     function startMoving() {
       if (!isMoving) {
         isMoving = true;
-        // Set position to fixed once it starts moving
-        noButton.style.position = "fixed";
+        noButton.style.position = "fixed"; // free to move anywhere
         moveNo(); // first move
       }
     }
 
     function moveNo() {
       const padding = 20;
-
       const maxX = window.innerWidth - noButton.offsetWidth - padding;
       const maxY = window.innerHeight - noButton.offsetHeight - padding;
 
@@ -96,14 +111,11 @@
       noButton.style.top = y + "px";
     }
 
-    // Keep moving while hovering
-    noButton.addEventListener("mouseenter", () => {
-      if (isMoving) moveNo();
-    });
-    noButton.addEventListener("touchstart", () => {
-      if (isMoving) moveNo();
-    });
+    // Keep moving on hover/touch after first movement
+    noButton.addEventListener("mouseenter", () => { if(isMoving) moveNo(); });
+    noButton.addEventListener("touchstart", () => { if(isMoving) moveNo(); });
 
+    // YES button click
     function goYes() {
       window.location.href = "yes.html";
     }

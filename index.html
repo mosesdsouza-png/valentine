@@ -57,7 +57,7 @@
 </head>
 <body>
 
-  <h1>Will you be my Valentine? 💖</h1>
+  <h1>Will you be my Valentine Kamakshu? 💖</h1>
 
   <div class="buttons">
     <button id="yes" onclick="goYes()">YES</button>
@@ -71,8 +71,14 @@
     noButton.addEventListener("touchstart", moveNo);
 
     function moveNo() {
-      const x = Math.random() * 250;
-      const y = Math.random() * 80;
+      const padding = 20;
+      
+       const maxX = window.innerWidth - noButton.offsetWidth - padding;
+      const maxY = window.innerHeight - noButton.offsetHeight - padding;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
       noButton.style.left = x + "px";
       noButton.style.top = y + "px";
     }

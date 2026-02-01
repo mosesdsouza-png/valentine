@@ -14,7 +14,6 @@
       align-items: center;
       font-family: Arial, sans-serif;
       background-color: #ffe6eb;
-      overflow: hidden; /* important */
     }
 
     h1 {
@@ -23,7 +22,12 @@
     }
 
     .buttons {
+      position: relative;
+      width: 350px;
+      height: 120px;
       display: flex;
+      justify-content: center;
+      align-items: center;
       gap: 40px;
     }
 
@@ -46,7 +50,8 @@
       font-size: 13px;
       background-color: #999;
       color: white;
-      position: absolute; /* key change */
+      position: absolute;
+      right: 40px;
     }
   </style>
 </head>
@@ -66,14 +71,8 @@
     noButton.addEventListener("touchstart", moveNo);
 
     function moveNo() {
-      const padding = 20;
-
-      const maxX = window.innerWidth - noButton.offsetWidth - padding;
-      const maxY = window.innerHeight - noButton.offsetHeight - padding;
-
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
-
+      const x = Math.random() * 250;
+      const y = Math.random() * 80;
       noButton.style.left = x + "px";
       noButton.style.top = y + "px";
     }

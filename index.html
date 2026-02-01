@@ -20,9 +20,10 @@
     h1 {
       font-size: 2.8rem;
       margin-bottom: 40px;
+      text-align: center;
     }
 
-    /* Container ONLY for initial alignment */
+    /* Container for buttons side by side */
     .buttons {
       display: flex;
       gap: 40px;
@@ -43,17 +44,16 @@
       color: white;
     }
 
-    /* NO button — FIXED SIZE */
+    /* NO button */
     #no {
       width: 70px;
       height: 35px;
       font-size: 13px;
       background-color: #999;
       color: white;
-
-      /* KEY PART */
-      position: fixed;          /* relative to entire screen */
-      border-radius: 10px;      /* locked shape */
+      border-radius: 10px;
+      /* Initially static inside the flex container */
+      position: relative;
     }
   </style>
 </head>
@@ -68,10 +68,20 @@
 
   <script>
     const noButton = document.getElementById("no");
+    let isMoving = false; // flag to start moving only after first hover/touch
 
-    // Move on hover (desktop) or touch (mobile)
-    noButton.addEventListener("mouseenter", moveNo);
-    noButton.addEventListener("touchstart", moveNo);
+    // Start moving on hover or touch
+    noButton.addEventListener("mouseenter", startMoving);
+    noButton.addEventListener("touchstart", startMoving);
+
+    function startMoving() {
+      if (!isMoving) {
+        isMoving = true;
+        // Set position to fixed once it starts moving
+        noButton.style.position = "fixed";
+        moveNo(); // first move
+      }
+    }
 
     function moveNo() {
       const padding = 20;
@@ -85,6 +95,14 @@
       noButton.style.left = x + "px";
       noButton.style.top = y + "px";
     }
+
+    // Keep moving while hovering
+    noButton.addEventListener("mouseenter", () => {
+      if (isMoving) moveNo();
+    });
+    noButton.addEventListener("touchstart", () => {
+      if (isMoving) moveNo();
+    });
 
     function goYes() {
       window.location.href = "yes.html";

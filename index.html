@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Be My Valentine?</title>
+
   <style>
     body {
       height: 100vh;
@@ -16,39 +17,41 @@
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin-bottom: 40px;
     }
 
     .buttons {
       position: relative;
-      width: 300px;
-      height: 150px;
+      width: 350px;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
     }
 
     button {
-      padding: 15px 30px;
-      font-size: 18px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
     }
 
     #yes {
+      padding: 20px 45px;
+      font-size: 22px;
+      font-weight: bold;
       background-color: #ff4d6d;
       color: white;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
     }
 
     #no {
+      padding: 10px 18px;
+      font-size: 13px;
       background-color: #999;
       color: white;
       position: absolute;
-      top: 80px;
-      left: 110px;
-      font-size: 12px;
+      right: 40px;
     }
   </style>
 </head>
@@ -69,7 +72,7 @@
 
     function moveNo() {
       const x = Math.random() * 250;
-      const y = Math.random() * 120;
+      const y = Math.random() * 80;
       noButton.style.left = x + "px";
       noButton.style.top = y + "px";
     }

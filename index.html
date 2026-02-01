@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine?</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #ffe6eb;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+    }
+
+    .buttons {
+      position: relative;
+      width: 300px;
+      height: 150px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #no {
+      background-color: #999;
+      color: white;
+      position: absolute;
+      top: 80px;
+      left: 110px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Will you be my Valentine Kamakshu? 💖</h1>
+
+  <div class="buttons">
+    <button id="yes" onclick="goYes()">YES</button>
+    <button id="no">no</button>
+  </div>
+
+  <script>
+    const noButton = document.getElementById("no");
+
+    noButton.addEventListener("mouseover", moveNo);
+    noButton.addEventListener("touchstart", moveNo);
+
+    function moveNo() {
+      const x = Math.random() * 250;
+      const y = Math.random() * 120;
+      noButton.style.left = x + "px";
+      noButton.style.top = y + "px";
+    }
+
+    function goYes() {
+      window.location.href = "yes.html";
+    }
+  </script>
+
+</body>
+</html>
